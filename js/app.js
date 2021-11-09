@@ -80,21 +80,21 @@ let epicerie = {
 let poele = {
     content: [],
     cuir(){
-        setTimeout(()=> {
-            this.content[0] = etats['cuit']
-        }, 4000)
+        this.content[0].etat = "cuite"
+        setTimeout(() => {
+            console.log(`${this.content[0].nom} est ${this.content[0].etat}`);
+        }, 4000);
     }
 }
-
 //line32)
 let bol = {
     content: [],
-    melanger(nomMelange){
+    melanger(nomMelange) {
         let newMelange = {
-        nom: nomMelange,
-        etats : ['pas cuit'],
+            nom: nomMelange,
+            etat: "pas cuit"
         }
-        bol.content.push(newMelange)
+        this.content.push(newMelange);
     }
 }
 
@@ -186,19 +186,15 @@ billy.couper(ingredient)
 
 //line 79
 
-bol.melanger()
-console.log(bol.content);
+//bol melanger
+bol.melanger("omelette")
+//mettre aliment dans poele
 
 
-poele.content.push(bol.content)
-bol.content.splice()
-console.log(poele);
+//cuir les aliments
+poele.content.push(bol.content.pop());
+bol.content = []
 
-// poele.cuir('omelette')
+//cuir l omelette
+poele.cuir();
 
-console.log(poele.content);
-console.log(bol);
-
-// poele.cuir(ingredient)
-
-console.log('l omelette est presque cuite');
